@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   const paths = getAllPostIds()
   return {
     paths,
-    fallback: true
+    fallback: false
     // If fallback is false, then any paths that not returned by getStaticPaths will result in a 404 page.
   }
 }
@@ -27,12 +27,12 @@ export default function Post({ postData }) {
   return (
     <Layout>
       <Head>
-        <title>{postData.title ? postData : 'NO TITLE'}</title>
+        <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title ? postData : 'NO TITLE'}</h1>
+        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date ? postData.date : 'No Date'} />
+          <Date dateString={postData.date} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
